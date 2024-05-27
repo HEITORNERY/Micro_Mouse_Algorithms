@@ -33,7 +33,8 @@ class State:
 
     def set_cur_dir(self, cur_dir):
         self.cur_dir = cur_dir
-
+    # update goal position with your maze width and height
+    # this points are to maze 16x16
     def is_goal(self):
         return self.location.position == [7, 8] or self.location.position == [8, 8] \
                or self.location.position == [8, 7] or self.location.position == [7, 7]
