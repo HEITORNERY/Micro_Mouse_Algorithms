@@ -3,6 +3,22 @@ import sys
 import API 
 import Main
 
+cells = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
 cur_direction = 0
 cur_position = [0, 0]
@@ -24,6 +40,76 @@ def update_direction(turn_direction):
 def log(string):
     sys.stderr.write("{}\n".format(string))
     sys.stderr.flush()
+
+def updateWalls(x,y,orient,L,R,F):
+    if(L and R and F):
+        if (orient==0): 
+            cells[y][x]= 13
+        elif (orient==1): 
+            cells[y][x]= 12
+        elif (orient==2): 
+            cells[y][x]= 11
+        elif (orient==3): 
+            cells[y][x]= 14
+
+    elif (L and R and not F):
+        if (orient==0 or orient== 2): 
+            cells[y][x]= 9
+        elif (orient==1 or orient==3): 
+            cells[y][x]= 10
+
+    elif (L and F and not R):
+        if (orient==0): 
+            cells[y][x]= 8
+        elif (orient==1): 
+            cells[y][x]= 7
+        elif (orient==2): 
+            cells[y][x]= 6
+        elif (orient==3): 
+            cells[y][x]= 5
+
+    elif (R and F and not L):
+        if (orient==0): 
+            cells[y][x]= 7
+        elif (orient==1): 
+            cells[y][x]= 6
+        elif (orient==2): 
+            cells[y][x]= 5
+        elif (orient==3): 
+            cells[y][x]= 8
+
+    elif(F):
+        if (orient==0): 
+            cells[y][x]= 2
+        elif (orient==1): 
+            cells[y][x]= 3
+        elif (orient==2): 
+            cells[y][x]= 4
+        elif (orient==3): 
+            cells[y][x]= 1
+
+    elif(L):
+        if (orient==0): 
+            cells[y][x]= 1
+        elif (orient==1): 
+            cells[y][x]= 2
+        elif (orient==2): 
+            cells[y][x]= 3
+        elif (orient==3): 
+            cells[y][x]= 4
+
+    elif(R):
+        if (orient==0): 
+            cells[y][x]= 3
+        elif (orient==1): 
+            cells[y][x]= 4
+        elif (orient==2): 
+            cells[y][x]= 1
+        elif (orient==3): 
+            cells[y][x]= 2
+
+    else:
+        cells[y][x]= 15
 
 # Função de heurística (distância de Manhattan)
 def heuristic(current, goal):
@@ -103,21 +189,18 @@ def caminho(self):
 
 
 # Exemplo de uso
-maze =      [
-    [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 1, 1, 1, 1, 1, 1, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 1, 1, 1, 1, 1, 1, 0, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0]
-]
-
+maze =      [[0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+            [0, 0, 1, 1, 0, 1, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+            [0, 1, 1, 1, 0, 1, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+            [0, 1, 1, 1, 1, 1, 0, 1, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+            [0, 1, 0, 1, 1, 1, 1, 1, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 0, 0, 1, 1, 1, 0]]
 start_position = (0, 0)
-end_position = (9, 9)
+end_position = (6, 6)
 path = astar(maze, start_position, end_position)
 
 if path:
