@@ -277,13 +277,9 @@ def main():
     set_dir(0)  # reset heading to north
     solution = find_bfs_shortest_path()  # find the shortest path to solution using breadth first search
     end_time = time.time()  # Para o cronômetro após encontrar a solução
-    log("Tempo total para gerar o mapa e encontrar a solução (DFS + BFS): {:.2f} segundos".format(end_time - start_time))
+    log("Tempo total para gerar o mapa e encontrar a solução usando o BFS: {:.2f} segundos".format(end_time - start_time))
     execute_shortest_path(solution)  # execute the shortest path solution once found
     log("Done!")
 
 if __name__ == "__main__":
-    main()
-
-
-        
-        
+    main()   
