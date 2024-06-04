@@ -1,8 +1,7 @@
 import sys
-from queue import LifoQueue, Queue
+from queue import LifoQueue
 import API
 import location
-import state
 import time  # Importando a biblioteca time
 
 # Update width and height with your maze
@@ -19,8 +18,6 @@ cur_direction = 0
 
 # for tracking global 'physical' position in maze as [x, y], initialized to [0, 0]
 cur_position = [0, 0]
-
-# for tracking 'virtual' position when
 
 # for tracking all maze data, create 2d array of Locations
 maze = [[location.Location([i, j]) for j in range(0, MAZE_WIDTH)] for i in range(0, MAZE_HEIGHT)]

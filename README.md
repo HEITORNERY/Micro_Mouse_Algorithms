@@ -10,3 +10,8 @@ Here (https://github.com/One2Remember/Micromouse) you can access the One2Remembe
 The code that must be executed in the simulator with this logic is BFS.py.
 ### Depth-First Search Algorithm (DFS)
 The DFS algorithm performs a deep search throughout the maze and therefore its execution may take longer than the execution of the previous algorithm that combines the mapping power of DFS with the agility to find the fastest path that BFS does. However, it's still great code for mapping, so it shouldn't be overlooked. The DFS code is DFS.py. Run it to see its resolution.
+### Flood Fill Algorithm
+The flood fill algorithm is used to calculate distances or costs from a starting point to all reachable cells in the maze. This is essential so that the micromouse can determine the most efficient route to navigate the maze to its destination.
+The algorithm for solving the maze using flood fill was based on the EastonThewes algorithm.
+Special thanks to EastonThewes for making the code publicly available for free.
+You can check the original code from EastonThewes, by (https://github.com/EastonThewes/FloodFill-MicroMouse).
