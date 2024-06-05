@@ -1,5 +1,6 @@
 import API
 import sys
+import time
 
 x=0
 y=0
@@ -602,7 +603,8 @@ def appendDestination(x,y):
 #done
 def shortestPath(x,y,xprev,yprev,orient,state):
     floodFill2(flood2)
-
+    log("Iniciado o Caminho mais rapido")
+    start_time = time.time()
     while True:
         show(flood2,state)
         L= API.wallLeft()
@@ -634,15 +636,17 @@ def shortestPath(x,y,xprev,yprev,orient,state):
             yprev=y
             x,y = updateCoordinates(x,y,orient)
 
-        if updateCoordinates(x,y,orient) == (8,8):
+        if flood2[y][x] == 1:
             break
-    return
-
+    end_time = time.time()
+    log(f"O tempo para executar foi de {end_time - start_time :.2f}")
+    log("fim")
+    return True
 def inicio(x,y,orient,xprev,yprev,state):
     updateCoordinates(x,y,orient)
     if updateCoordinates(x,y,orient) == (0,0):
         shortestPath(x,y,xprev,yprev,orient,state)
-
+        return True
 def main():
     x=0
     y=0
@@ -736,7 +740,10 @@ def main():
         xprev=x
         yprev=y
         x,y = updateCoordinates(x,y,orient)
+        if inicio(x,y,orient,xprev,yprev,state) == True:
+            break
         inicio(x,y,orient,xprev,yprev,state)
+        
 
         
         
