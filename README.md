@@ -15,3 +15,8 @@ The flood fill algorithm is used to calculate distances or costs from a starting
 The algorithm for solving the maze using flood fill was based on the EastonThewes algorithm.
 Special thanks to EastonThewes for making the code publicly available for free.
 You can check the original code from EastonThewes, by (https://github.com/EastonThewes/FloodFill-MicroMouse).
+## Authors:
+The project was designed and organized at the Intelligence, Robotics, Automation and Systems Laboratory (LABIRAS) by researchers:
+* José Heitor Nery Viana
+* Iglésio Oliveira de Carvalho Júnior
+* Antônio José Mota Ferreira Brandão
